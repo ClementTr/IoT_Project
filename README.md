@@ -24,7 +24,15 @@ On fait la même chose pour le RSSI.
 On se rend compte que la majorité des valeurs de puissance en réception sont comprises entre -140 et -100 et que l'on compte quelques valeurs extrêmes pas nécessairement aberrantes.
 
 
-## Traitement des données & Machine Learning
+## Traitement des données
+
+Le format de données choisi est le suivant: 
+On retrouve les messages en lignes et toutes les bases en colonnes. Puis la matrice contient, pour chaque message, la puissances du signal pour les bases qui ont reçues le message. Dans le cas où le message n'est pas recu par certaines bases, la valeur de 0 est mise. 
+Arbitrairement nous avons exprimé la puissance en mW.
+Comme, le signal était de l'ordre de 10^(-13) nous avons centré et réduit nos données. 
+Enfin, dans un premier temps nous avions integré les positions de chaque base en colonne, l'algoritmhe perçoit , pour une même base, les colonnes "latitude", "longitude" et "rssi" comme indépendantes. Cette crainte s'est confirmée par un mauvais résultat. L'ajout des coordonnées géographiques des bases tel que nous l'avons fait n'apporte pas d'informations.
+
+## Machine Learning
 Une fois les données bien comprises, on s'est attaché au traitement et à l'apprentissage de ces dernières.  
 De façon itérative, nous avons ajouté ou pas les coordonnées, converti ou non les données rssi décibels en mégawatts et mis à l'échelle l'ensemble de notre set.
 
